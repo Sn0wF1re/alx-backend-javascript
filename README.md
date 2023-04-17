@@ -1,0 +1,1 @@
+This repo handles backend projects for the fulfillment of the ALX-SE specialization course
