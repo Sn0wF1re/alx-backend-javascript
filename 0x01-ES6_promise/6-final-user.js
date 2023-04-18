@@ -15,5 +15,6 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
           res.push({ status: item.status, value: item.reason });
         }
       });
+      return res;
     });
 }
