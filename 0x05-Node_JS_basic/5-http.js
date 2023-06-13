@@ -51,21 +51,16 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   }
   if (req.url === '/students') {
-    const arrayResponses = ['This is the list of our students'];
+    res.write('This is the list of our students\n');
     countStudents(process.argv[2].toString())
       .then((result) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
-        arrayResponses.push(result);
-        const resText = arrayResponses.join('\n');
-        res.write(Buffer.from(resText));
+        res.end(result.slice(0, -1));
       })
-      .catch((err) => {
+      .catch(() => {
         res.statusCode = 404;
-        res.setHeader('Content-Type', 'text/plain');
-        const resText = (err instanceof Error ? err.message : '');
-        res.write(Buffer.from(resText));
-        // res.end('Cannot load the database');
+        res.end('Cannot load the database');
       });
   }
 });
